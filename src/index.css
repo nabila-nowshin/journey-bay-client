@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Murecho:wght@100..900&display=swap');
+
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+
+:root {
+  --font-sans: 'Mulish', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+
+
+.mulish-light {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+
+.mulish-regular {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+
+.mulish-semibold {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+
+/* Italics if needed */
+.mulish-italic {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-optical-sizing: auto;
+}
