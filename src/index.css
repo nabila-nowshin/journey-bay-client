@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Murecho:wght@100..900&display=swap');
 
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui"{
+  themes :journeybaylight --default;
+}
 
 
 
 :root {
-  --font-sans: 'Mulish', system-ui, sans-serif;
+  --font-sans: 'Murecho', system-ui, sans-serif;
 }
 
 body {
@@ -14,6 +16,28 @@ body {
 }
 
 
+/* JourneyBay Light Theme */
+@plugin "daisyui/theme" {
+  name: "journeybaylight";
+  default: true;
+  --color-primary: #1882FF;
+  --color-secondary: #3b82f6;
+  --color-accent: #64748b;
+  --color-neutral: #f8fafc;
+  --color-base-100: #ffffff;
+  --color-base-content: #1e3a8a;
+}
+
+/* JourneyBay Dark Theme */
+@plugin "daisyui/theme" {
+  name: "journeybaydark";
+  --color-primary: #93c5fd;
+  --color-secondary: #60a5fa;
+  --color-accent: #cbd5e1;
+  --color-neutral: #1e293b;
+  --color-base-100: #0f172a;
+  --color-base-content: #93c5fd;
+}
 
 .mulish-light {
   font-family: 'Mulish', sans-serif;

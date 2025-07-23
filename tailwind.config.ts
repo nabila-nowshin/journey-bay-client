@@ -1,4 +1,5 @@
 module.exports = {
+  important: true,
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -12,8 +13,9 @@ module.exports = {
     themes: [
       {
         journeybaylight: {
-          primary: "#1e3a8a",
+          primary: "#d62d6b",
           secondary: "#3b82f6",
+          "btn-primary": "#d62d6b",
           accent: "#64748b",
           neutral: "#f8fafc",
           "base-100": "#ffffff",
