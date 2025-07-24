@@ -1,6 +1,70 @@
-import { Link } from "react-router";
+import { use } from "react";
+import { Link, Navigate, useNavigate } from "react-router";
+import { AuthContext } from "../provider/AuthContext";
+import Swal from "sweetalert2";
+import { auth } from "../firebase/firebase.config";
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const { createUser, updateUserProfile, setUser, signInWithGoogle } =
+    use(AuthContext);
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const url = e.target.url.value;
+    const password = e.target.password.value;
+
+    // 🔐 Password must be ≥8 chars, 1 upper, 1 lower, 1 special
+    const uppercase = /[A-Z]/.test(password);
+    const lowercase = /[a-z]/.test(password);
+    const specialChar = /[^A-Za-z0-9]/.test(password);
+    const minLength = password.length >= 8;
+
+    if (!uppercase || !lowercase || !specialChar || !minLength) {
+      let msg = "<strong>Password must:</strong><ul style='text-align:left'>";
+      if (!uppercase) msg += "<li>Include at least one UPPERCASE letter</li>";
+      if (!lowercase) msg += "<li>Include at least one lowercase letter</li>";
+      if (!specialChar)
+        msg += "<li>Include at least one special character</li>";
+      if (!minLength) msg += "<li>Be at least 8 characters long</li>";
+      msg += "</ul>";
+      Swal.fire({ icon: "error", title: "Invalid Password", html: msg });
+      return;
+    }
+
+    createUser(email, password)
+      .then(() =>
+        updateUserProfile({ displayName: name, photoURL: url }).then(() =>
+          auth.currentUser.reload()
+        )
+      )
+      .then(() => {
+        setUser({ ...auth.currentUser });
+        Swal.fire({
+          icon: "success",
+          title: "Registration Successful!",
+          text: "Redirecting to Home...",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+        setTimeout(() => navigate("/"), 2000);
+      })
+      .catch((err) =>
+        Swal.fire({
+          icon: "error",
+          title: "Registration Failed",
+          text: err.message,
+        })
+      );
+  };
+
+  const handleGoogleLogin = () => {
+    signInWithGoogle().then(() => navigate("/"));
+  };
+
   return (
     <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
       <div
@@ -14,21 +78,24 @@ const Register = () => {
           Create Your Account
         </h2>
 
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={onSubmitHandler}>
           <input
             type="text"
             placeholder="Name"
+            name="name"
             className="input input-bordered w-full"
             required
           />
           <input
             type="email"
+            name="email"
             placeholder="Email"
             className="input input-bordered w-full"
             required
           />
           <input
             type="password"
+            name="password"
             placeholder="Password (min 6 chars, 1 uppercase, 1 lowercase)"
             className="input input-bordered w-full"
             pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}"
@@ -38,6 +105,7 @@ const Register = () => {
           <input
             type="url"
             placeholder="Photo URL"
+            name="url"
             className="input input-bordered w-full"
           />
 
@@ -48,7 +116,10 @@ const Register = () => {
 
         <div className="divider my-4">or</div>
 
-        <button className="btn w-full border border-gray-300 hover:bg-gray-100 flex items-center justify-center">
+        <button
+          className="btn w-full border border-gray-300 hover:bg-gray-100 flex items-center justify-center"
+          onClick={handleGoogleLogin}
+        >
           <img
             src="https://www.svgrepo.com/show/475656/google-color.svg"
             alt="Google"
