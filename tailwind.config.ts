@@ -6,6 +6,9 @@ module.exports = {
       fontFamily: {
         sans: ["Mulish", "sans-serif"],
       },
+      backdropBlur: {
+        lg: "20px",
+      },
     },
   },
   plugins: [require("daisyui")],

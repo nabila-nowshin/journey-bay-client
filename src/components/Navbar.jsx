@@ -9,9 +9,6 @@ import toast from "react-hot-toast";
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { user, signOutUser } = use(AuthContext);
-  // console.log(user?.photoURL);
-
-  // console.log(theme);
 
   const handleLogout = () => {
     signOutUser()
@@ -25,8 +22,8 @@ const Navbar = () => {
     }`;
 
   return (
-    <div className=" w-full bg-base-100 shadow-md bg-opacity-90 backdrop-blur-md z-50">
-      <div className="navbar bg-base-100  max-w-7xl mx-auto px-6 ">
+    <div className="w-full bg-base-100 shadow-md bg-opacity-90 backdrop-blur-md  z-50 relative">
+      <div className="navbar bg-base-100 max-w-7xl mx-auto px-6">
         <div className="navbar-start">
           <Link to="/" className="text-3xl font-bold text-primary font-mulish">
             JourneyBay{" "}
@@ -35,7 +32,7 @@ const Navbar = () => {
 
         {/* desktop */}
         <div className="navbar-center hidden lg:flex">
-          <ul className=" px-1 flex items-center space-x-10 text-lg  text-gray-900">
+          <ul className="px-1 flex items-center space-x-10 text-lg text-gray-900">
             <li>
               <NavLink to={"/"} className={navLinkClasses}>
                 Home
@@ -46,30 +43,24 @@ const Navbar = () => {
                 All Packages
               </NavLink>
             </li>
+            {user && (
+              <li>
+                <NavLink to={"/myBookings"} className={navLinkClasses}>
+                  My Bookings
+                </NavLink>
+              </li>
+            )}
             <li>
               <NavLink to={"/about"} className={navLinkClasses}>
                 About Us
               </NavLink>
             </li>
-            {user && (
-              <>
-                <li>
-                  <NavLink to={"/mybookings"} className={navLinkClasses}>
-                    My Bookings
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to={"/about"} className={navLinkClasses}>
-                    About Us
-                  </NavLink>
-                </li>
-              </>
-            )}
           </ul>
         </div>
-        <div className="navbar-end">
-          {/* Login Button */}
-          <div className="dropdown">
+
+        <div className="navbar-end flex items-center space-x-4">
+          {/* Mobile dropdown */}
+          <div className="dropdown relative z-50">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -78,18 +69,17 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {" "}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
+                />
               </svg>
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow relative z-50"
             >
               <li>
                 <NavLink to={"/"} className={navLinkClasses}>
@@ -108,14 +98,16 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
+
+          {/* Theme toggle */}
           <button
             onClick={toggleTheme}
-            className="btn btn-circle btn-primary hover:text-base-content
-          "
+            className="btn btn-circle btn-primary hover:text-base-content"
           >
             {theme === "light" ? <FiMoon size={24} /> : <FiSun size={24} />}
           </button>
 
+          {/* Auth */}
           {!user ? (
             <Link
               to="/login"
@@ -124,8 +116,8 @@ const Navbar = () => {
               Login
             </Link>
           ) : (
-            <div className="dropdown dropdown-hover">
-              <div tabIndex={0} className=" ml-4">
+            <div className="relative dropdown dropdown-hover z-50">
+              <div tabIndex={0} className="ml-4">
                 <img
                   src={
                     user.photoURL || "https://i.ibb.co/2YcWrvKc/notfound.png"
@@ -133,19 +125,19 @@ const Navbar = () => {
                   alt="avatar"
                   title={user.displayName || "User"}
                   className="w-10 h-10 rounded-full border-2 border-primary cursor-pointer"
-                ></img>
+                />
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu bg-base-200  rounded-box z-1  p-2 shadow-sm"
+                className="dropdown-content menu bg-base-200 rounded-box p-2 shadow-sm relative z-50"
               >
                 <li>
                   <NavLink to={"/addPackage"} className={navLinkClasses}>
-                    About Us
+                    Add Package
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/manageMyPackage"} className={navLinkClasses}>
+                  <NavLink to={"/manageMyPackages"} className={navLinkClasses}>
                     Manage My Packages
                   </NavLink>
                 </li>

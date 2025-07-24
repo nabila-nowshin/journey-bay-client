@@ -17,19 +17,16 @@ const Register = () => {
     const url = e.target.url.value;
     const password = e.target.password.value;
 
-    // 🔐 Password must be ≥8 chars, 1 upper, 1 lower, 1 special
+    // 🔐 Password must be ≥6 chars, 1 upper, 1 lower
     const uppercase = /[A-Z]/.test(password);
     const lowercase = /[a-z]/.test(password);
-    const specialChar = /[^A-Za-z0-9]/.test(password);
-    const minLength = password.length >= 8;
+    const minLength = password.length >= 6;
 
-    if (!uppercase || !lowercase || !specialChar || !minLength) {
+    if (!uppercase || !lowercase || !minLength) {
       let msg = "<strong>Password must:</strong><ul style='text-align:left'>";
       if (!uppercase) msg += "<li>Include at least one UPPERCASE letter</li>";
       if (!lowercase) msg += "<li>Include at least one lowercase letter</li>";
-      if (!specialChar)
-        msg += "<li>Include at least one special character</li>";
-      if (!minLength) msg += "<li>Be at least 8 characters long</li>";
+      if (!minLength) msg += "<li>Be at least 6 characters long</li>";
       msg += "</ul>";
       Swal.fire({ icon: "error", title: "Invalid Password", html: msg });
       return;

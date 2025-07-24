@@ -6,6 +6,11 @@ import Register from "../pages/Register";
 import AllPackages from "../pages/AllPackages";
 import About from "../pages/About";
 import ForgotPassword from "../pages/ForgetPassword";
+import MyBookings from "../pages/MyBookings";
+import AddPackage from "../pages/AddPackage";
+import ManagePackages from "../pages/ManagePackages";
+import NotFound from "../pages/NotFound";
+import PrivateRoute from "../provider/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -34,8 +39,40 @@ export const router = createBrowserRouter([
       },
       {
         path: "/forgetPassword",
-        Component: ForgotPassword,
+        element: (
+          <PrivateRoute>
+            <ForgotPassword></ForgotPassword>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myBookings",
+        element: (
+          <PrivateRoute>
+            <MyBookings></MyBookings>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/addPackage",
+        element: (
+          <PrivateRoute>
+            <AddPackage></AddPackage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/manageMyPackages",
+        element: (
+          <PrivateRoute>
+            <ManagePackages></ManagePackages>
+          </PrivateRoute>
+        ),
       },
     ],
+  },
+  {
+    path: "*",
+    Component: NotFound,
   },
 ]);
