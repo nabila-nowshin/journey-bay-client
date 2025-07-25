@@ -1,11 +1,15 @@
 import { useLoaderData } from "react-router";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { loadSlim } from "@tsparticles/slim";
+import { AuthContext } from "../provider/AuthContext";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const PackageDetails = () => {
   const packageData = useLoaderData();
   const [init, setInit] = useState(false);
+  const { user } = use(AuthContext);
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -16,9 +20,11 @@ const PackageDetails = () => {
   }, []);
 
   const {
+    _id,
     tour_name,
     image,
     guide_name,
+    guide_email,
     guide_photo,
     duration,
     departure_date,
@@ -29,6 +35,37 @@ const PackageDetails = () => {
     guide_contact_no,
     bookingCount,
   } = packageData;
+
+  const handleBooking = (e) => {
+    e.preventDefault();
+    const notes = e.target.notes?.value || "";
+
+    const bookingInfo = {
+      tour_id: _id,
+      tour_name: tour_name,
+      guide_name: guide_name,
+      guide_email: guide_email,
+      buyer_email: user.email,
+      buyer_name: user.displayName,
+      booking_date: new Date(),
+      departure_date: departure_date,
+      notes,
+      status: "pending",
+    };
+
+    try {
+      axios.post("http://localhost:3000/bookings", bookingInfo).then((res) => {
+        if (res.data.insertedId || res.data.acknowledged) {
+          toast.success("Booking confirmed!");
+          document.getElementById("my_modal_5").close();
+        } else {
+          toast.error("Booking failed. Please try again.");
+        }
+      });
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
+  };
 
   return (
     <div className="relative">
@@ -131,11 +168,123 @@ const PackageDetails = () => {
 
           {/* Book Now Button */}
           <button
-            onClick={() => alert("Booking feature coming soon!")}
-            className="btn btn-primary  btn-outline rounded-full"
+            className="btn btn-primary btn-outline rounded-full"
+            onClick={() => document.getElementById("my_modal_5").showModal()}
           >
             Book Now
           </button>
+          <dialog
+            id="my_modal_5"
+            className="modal modal-bottom sm:modal-middle"
+          >
+            <div className="modal-box bg-base-100 rounded-xl">
+              <h3 className="text-2xl font-semibold mb-4 text-primary">
+                Confirm Your Booking
+              </h3>
+
+              <form
+                method="dialog"
+                className="space-y-4"
+                onSubmit={handleBooking}
+              >
+                {/* Tour Name (disabled) */}
+                <div>
+                  <label className="label font-medium text-base-content">
+                    Tour Package
+                  </label>
+                  <input
+                    type="text"
+                    value={tour_name}
+                    disabled
+                    className="input input-bordered w-full font-medium bg-base-200 text-gray-900"
+                  />
+                </div>
+
+                {/* Price (disabled) */}
+                <div>
+                  <label className="label font-medium text-base-content">
+                    Price
+                  </label>
+                  <input
+                    type="text"
+                    value={price}
+                    disabled
+                    className="input input-bordered w-full font-medium bg-base-200 text-gray-900"
+                  />
+                </div>
+
+                {/* Buyer name */}
+                <div>
+                  <label className="label font-medium text-base-content">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    value={user.displayName}
+                    disabled
+                    className="input input-bordered w-full font-medium bg-base-200 text-gray-900"
+                  />
+                </div>
+
+                {/* Buyer email */}
+                <div>
+                  <label className="label font-medium text-base-content">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    value={user.email}
+                    disabled
+                    className="input input-bordered w-full font-medium bg-base-200 text-gray-900"
+                  />
+                </div>
+
+                {/* Booking Date */}
+                <div>
+                  <label className="label font-medium text-base-content">
+                    Booking Date
+                  </label>
+                  <input
+                    type="text"
+                    value={new Date().toLocaleDateString()}
+                    disabled
+                    className="input input-bordered w-full font-medium bg-base-200 text-gray-900"
+                  />
+                </div>
+
+                {/* Special Note */}
+                <div>
+                  <label className="label font-medium text-base-content">
+                    Special Note (optional)
+                  </label>
+                  <textarea
+                    className="textarea textarea-bordered w-full"
+                    placeholder="Any preferences or notes?"
+                    name="notes"
+                  ></textarea>
+                </div>
+
+                {/* Actions */}
+                <div className="modal-action flex justify-between">
+                  <button
+                    type="submit"
+                    className="btn btn-primary rounded-full px-6"
+                  >
+                    Book Now
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline"
+                    onClick={() =>
+                      document.getElementById("my_modal_5").close()
+                    }
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </dialog>
         </div>
       </section>
     </div>
