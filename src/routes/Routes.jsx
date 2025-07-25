@@ -11,6 +11,7 @@ import AddPackage from "../pages/AddPackage";
 import ManagePackages from "../pages/ManagePackages";
 import NotFound from "../pages/NotFound";
 import PrivateRoute from "../provider/PrivateRoute";
+import PackageDetails from "../pages/PackageDetails";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,16 @@ export const router = createBrowserRouter([
       {
         path: "/packages",
         Component: AllPackages,
+      },
+      {
+        path: "/packages/:id",
+        element: (
+          <PrivateRoute>
+            <PackageDetails></PackageDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/packages/${params.id}`),
       },
       {
         path: "/about",

@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const Footer = () => {
   return (
     <>
-      <footer className="footer sm:footer-horizontal bg-base-400 text-base-content p-10">
+      <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
         {/* Brand */}
         <div>
           <Link to="/" className="text-3xl font-bold text-primary font-mulish">
@@ -82,7 +82,7 @@ const Footer = () => {
         </nav>
       </footer>
 
-      <aside className="text-center py-4 border-t border-base-400 text-sm bg-base-400">
+      <aside className="text-center py-4 border-t border-base-400 text-sm bg-base-200">
         <p>© {new Date().getFullYear()} JourneyBay. All rights reserved.</p>
       </aside>
     </>

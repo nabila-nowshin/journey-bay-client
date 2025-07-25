@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router";
-import useAuth from "../hooks/useAuth";
+import { Link } from "react-router";
 
 const AllPackages = () => {
   const [packages, setPackages] = useState([]);
