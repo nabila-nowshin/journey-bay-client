@@ -49,6 +49,8 @@ const PackageDetails = () => {
       buyer_name: user.displayName,
       booking_date: new Date(),
       departure_date: departure_date,
+      departure_location,
+      destination,
       notes,
       status: "pending",
     };
