@@ -1,11 +1,16 @@
 import React from "react";
 import HeroBanner from "./HeroBanner";
+import FeaturedPackages from "./FeaturedPackages";
+import WhyUs from "./WhyUs";
+import Testimonials from "./Testimonials";
 
 const Home = () => {
   return (
     <div>
       <HeroBanner></HeroBanner>
-      <h1>hi</h1>
+      <FeaturedPackages></FeaturedPackages>
+      <WhyUs></WhyUs>
+      <Testimonials></Testimonials>
     </div>
   );
 };

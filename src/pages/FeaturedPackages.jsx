@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const AllPackages = () => {
+const FeaturedPackages = () => {
   const [packages, setPackages] = useState([]);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const AllPackages = () => {
       {/* Show All Button */}
       <div className="text-center mt-10">
         <Link
-          to="/all-packages"
+          to="/packages"
           className="inline-block bg-secondary text-secondary-content px-6 py-3 rounded-lg hover:brightness-110"
         >
           Show All Packages →
@@ -75,4 +75,4 @@ const AllPackages = () => {
   );
 };
 
-export default AllPackages;
+export default FeaturedPackages;
