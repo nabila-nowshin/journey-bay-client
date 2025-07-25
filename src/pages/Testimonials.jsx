@@ -8,7 +8,7 @@ const Testimonials = () => {
         <div
           className="stats stats-vertical md:stats-horizontal gap-6 
                     bg-white/30 backdrop-blur-md rounded-2xl p-6 shadow-lg
-                    transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_15px_rgb(59,130,246)]"
+                    transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_15px_rgb(59,130,246)] outline-1"
         >
           <div className="stat">
             <div className="stat-title text-primary">Countries Covered</div>
