@@ -1,11 +1,10 @@
-import { useNavigate, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useState } from "react";
 import { loadSlim } from "@tsparticles/slim";
 
 const PackageDetails = () => {
   const packageData = useLoaderData();
-  const navigate = useNavigate();
   const [init, setInit] = useState(false);
 
   useEffect(() => {

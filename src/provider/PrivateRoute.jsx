@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
-import { Navigate } from "react-router";
+import { Navigate, useLocation } from "react-router";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
+  const location = useLocation();
 
   if (loading) {
     return (
@@ -14,11 +15,10 @@ const PrivateRoute = ({ children }) => {
   }
 
   if (!user) {
-    // not logged in → kick to login & remember current page
+    // Redirect to login, passing current route as `from`
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  // logged in → render the protected component
   return children;
 };
 

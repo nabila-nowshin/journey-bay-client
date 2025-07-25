@@ -1,12 +1,14 @@
 import { Link } from "react-router";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import axios from "axios";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
+import Loader from "../components/Loader";
+import { AuthContext } from "../provider/AuthContext";
 
 const FeaturedPackages = () => {
   const [packages, setPackages] = useState([]);
-
+  const { loading } = use(AuthContext);
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -28,6 +30,8 @@ const FeaturedPackages = () => {
         console.error("Failed to fetch packages:", err);
       });
   }, []);
+
+  if (loading) return <loader></loader>;
 
   return (
     <div className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">

@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { user, signOutUser } = use(AuthContext);
+  const { user, signOutUser, loading } = use(AuthContext);
 
   const handleLogout = () => {
     signOutUser()
@@ -108,7 +108,9 @@ const Navbar = () => {
           </button>
 
           {/* Auth */}
-          {!user ? (
+          {loading ? (
+            <span className="loading loading-ring loading-sm text-primary"></span>
+          ) : !user ? (
             <Link
               to="/login"
               className="ml-6 px-5 py-2 rounded-full border border-primary text-primary font-semibold hover:bg-primary hover:text-base-content transition"
@@ -132,12 +134,12 @@ const Navbar = () => {
                 className="dropdown-content menu bg-base-200 rounded-box p-2 shadow-sm relative z-50"
               >
                 <li>
-                  <NavLink to={"/addPackage"} className={navLinkClasses}>
+                  <NavLink to="/addPackage" className={navLinkClasses}>
                     Add Package
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/manageMyPackages"} className={navLinkClasses}>
+                  <NavLink to="/manageMyPackages" className={navLinkClasses}>
                     Manage My Packages
                   </NavLink>
                 </li>
