@@ -36,7 +36,7 @@ const FeaturedPackages = () => {
   return (
     <div className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background gradient animation */}
-      <div className="absolute inset-0 -z-20 animate-gradient-x bg-gradient-to-r from-sky-100 via-blue-300 to-indigo-400  opacity-30 blur-2xl"></div>
+      <div className="absolute inset-0 -z-20 animate-gradient-x bg-gradient-to-r from-sky-100 via-blue-300 to-indigo-400  opacity-30 blur-2xl shadow-2xl"></div>
 
       {init && (
         <Particles

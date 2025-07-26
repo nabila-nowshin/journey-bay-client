@@ -22,10 +22,13 @@ const Navbar = () => {
     }`;
 
   return (
-    <div className="w-full bg-base-100 shadow-md bg-opacity-90 backdrop-blur-md  z-50 relative">
+    <div className="w-full bg-base-100 shadow-md bg-opacity-90 backdrop-blur-md  z-50 sticky top-0 ">
       <div className="navbar bg-base-100 max-w-7xl mx-auto px-6">
         <div className="navbar-start">
-          <Link to="/" className="text-3xl font-bold text-primary font-mulish">
+          <Link
+            to="/"
+            className="text-xl md:text-3xl  font-bold text-primary font-mulish"
+          >
             JourneyBay{" "}
           </Link>
         </div>
@@ -91,6 +94,13 @@ const Navbar = () => {
                   All Packages
                 </NavLink>
               </li>
+              {user && (
+                <li>
+                  <NavLink to={"/myBookings"} className={navLinkClasses}>
+                    My Bookings
+                  </NavLink>
+                </li>
+              )}
               <li>
                 <NavLink to={"/about"} className={navLinkClasses}>
                   About Us
@@ -104,7 +114,7 @@ const Navbar = () => {
             onClick={toggleTheme}
             className="btn btn-circle btn-primary hover:text-base-content"
           >
-            {theme === "light" ? <FiMoon size={24} /> : <FiSun size={24} />}
+            {theme === "light" ? <FiMoon size={20} /> : <FiSun size={20} />}
           </button>
 
           {/* Auth */}
@@ -118,7 +128,7 @@ const Navbar = () => {
               Login
             </Link>
           ) : (
-            <div className="relative dropdown dropdown-hover z-50">
+            <div className="relative dropdown dropdown-hover z-50 ">
               <div tabIndex={0} className="ml-4">
                 <img
                   src={
@@ -129,9 +139,14 @@ const Navbar = () => {
                   className="w-10 h-10 rounded-full border-2 border-primary cursor-pointer"
                 />
               </div>
+              {/* <ul
+                tabIndex={0}
+                className="dropdown-content menu bg-base-200/40 backdrop-blur-md rounded-box p-2 shadow-sm  z-50"
+              > */}
               <ul
                 tabIndex={0}
-                className="dropdown-content menu bg-base-200 rounded-box p-2 shadow-sm relative z-50"
+                className="menu dropdown-content bg-base-200/40 backdrop-blur-md rounded-box  p-2 shadow z-50"
+                style={{ left: "auto", right: "0" }}
               >
                 <li>
                   <NavLink to="/addPackage" className={navLinkClasses}>

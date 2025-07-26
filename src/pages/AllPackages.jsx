@@ -3,11 +3,23 @@ import axios from "axios";
 import { Link } from "react-router";
 import { AuthContext } from "../provider/AuthContext";
 import Loader from "../components/Loader";
+import { loadSlim } from "@tsparticles/slim";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
 
 const AllPackages = () => {
   const [packages, setPackages] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const { loading } = use(AuthContext);
+  const [init, setInit] = useState(false);
+
+  //animation
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
 
   //Fetch packages on searchTerm change
   useEffect(() => {
@@ -20,7 +32,34 @@ const AllPackages = () => {
   if (loading) return <Loader></Loader>;
 
   return (
-    <section className="min-h-screen px-6 py-12 bg-base-200">
+    <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* background animation */}
+      {/* Background gradient animation */}
+      <div className="absolute inset-0 -z-20 animate-gradient-x bg-gradient-to-r from-sky-100 via-blue-300 to-indigo-400  opacity-30 blur-2xl shadow-2xl"></div>
+
+      {init && (
+        <Particles
+          id="tsparticles"
+          className="absolute inset-0 -z-10"
+          options={{
+            fullScreen: { enable: false },
+            particles: {
+              number: { value: 20 },
+              color: { value: "#0c4d0b" },
+              size: { value: 5 },
+              move: { enable: true, speed: 1 },
+              opacity: { value: 0.6 },
+              shape: {
+                type: "polygon",
+                polygon: {
+                  sides: 6,
+                },
+              },
+            },
+          }}
+        />
+      )}
+
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-8">
           Explore All Tour Packages

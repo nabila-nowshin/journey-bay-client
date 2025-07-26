@@ -69,76 +69,104 @@ const AddPackage = () => {
       });
   };
   return (
-    <section className="max-w-4xl mx-auto p-6 bg-white rounded shadow my-10">
-      <h2 className="text-2xl font-bold mb-6">Add Tour Package</h2>
-      <form
-        onSubmit={handleAdd}
-        className="grid grid-cols-1 md:grid-cols-2 gap-4"
-      >
-        <input
-          name="tour_name"
-          required
-          placeholder="Tour Name"
-          className="input input-bordered"
-        />
-        <input
-          name="image"
-          required
-          placeholder="Image URL"
-          className="input input-bordered"
-        />
-        <input
-          name="duration"
-          required
-          placeholder="Duration"
-          className="input input-bordered"
-        />
-        <input
-          name="departure_location"
-          required
-          placeholder="Departure Location"
-          className="input input-bordered"
-        />
-        <input
-          name="destination"
-          required
-          placeholder="Destination"
-          className="input input-bordered"
-        />
-        <input
-          name="price"
-          required
-          type="number"
-          placeholder="Price"
-          className="input input-bordered"
-        />
-        <input
-          name="departure_date"
-          required
-          type="date"
-          className="input input-bordered"
-        />
-        <input
-          name="contact_no"
-          required
-          placeholder="Contact No."
-          className="input input-bordered"
-        />
-        <textarea
-          name="package_details"
-          required
-          placeholder="Package Details"
-          className="textarea textarea-bordered col-span-full"
-        />
-        <button
-          type="submit"
-          disabled={loading}
-          className="btn btn-primary col-span-full"
+    <div className="bg-base-300/20 py-10">
+      <div className="max-w-4xl mx-auto p-10 bg-base-100 rounded-2xl shadow-lg ">
+        <h2 className="text-3xl font-bold mb-8 text-center">
+          Add Tour Package
+        </h2>
+        <form
+          onSubmit={handleAdd}
+          className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5"
         >
-          {loading ? "Submitting..." : "Add Package"}
-        </button>
-      </form>
-    </section>
+          <div className="form-control">
+            <input
+              name="tour_name"
+              required
+              placeholder="Tour Name"
+              className="input input-bordered bg-base-200 w-full"
+            />
+          </div>
+          <div className="form-control">
+            <input
+              name="image"
+              required
+              placeholder="Image URL"
+              className="input input-bordered bg-base-200 w-full"
+            />
+          </div>
+          <div className="form-control">
+            <input
+              name="duration"
+              required
+              placeholder="Duration (e.g., 3 Days 2 Nights)"
+              className="input input-bordered bg-base-200 w-full"
+            />
+          </div>
+          <div className="form-control">
+            <input
+              name="departure_location"
+              required
+              placeholder="Departure Location"
+              className="input input-bordered bg-base-200 w-full"
+            />
+          </div>
+          <div className="form-control">
+            <input
+              name="destination"
+              required
+              placeholder="Destination"
+              className="input input-bordered bg-base-200 w-full"
+            />
+          </div>
+          <div className="form-control">
+            <input
+              name="price"
+              required
+              type="number"
+              min="0"
+              placeholder="Price (in BDT)"
+              className="input input-bordered bg-base-200 w-full"
+            />
+          </div>
+          <div className="form-control">
+            <input
+              name="departure_date"
+              required
+              type="date"
+              className="input input-bordered bg-base-200 w-full"
+            />
+          </div>
+          <div className="form-control">
+            <input
+              name="contact_no"
+              required
+              placeholder="Contact No."
+              className="input input-bordered bg-base-200 w-full"
+            />
+          </div>
+
+          <div className="form-control col-span-full">
+            <textarea
+              name="package_details"
+              required
+              placeholder="Package Details"
+              rows={4}
+              className="textarea textarea-bordered bg-base-200 w-full"
+            />
+          </div>
+
+          <div className="col-span-full flex justify-center">
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn btn-primary w-full md:w-auto px-10"
+            >
+              {loading ? "Submitting..." : "Add Package"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 
