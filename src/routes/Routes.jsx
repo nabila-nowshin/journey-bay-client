@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/packages/${params.id}`),
+          fetch(`https://journey-bay-server.vercel.app/packages/${params.id}`),
       },
       {
         path: "/about",
@@ -51,11 +51,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/forgetPassword",
-        element: (
-          <PrivateRoute>
-            <ForgotPassword></ForgotPassword>
-          </PrivateRoute>
-        ),
+        element: <ForgotPassword></ForgotPassword>,
       },
       {
         path: "/myBookings",

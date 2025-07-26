@@ -10,11 +10,14 @@ const MyBookings = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/bookings?email=${user.email}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-          },
-        })
+        .get(
+          `https://journey-bay-server.vercel.app/bookings?email=${user.email}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+            },
+          }
+        )
         .then((res) => setBookings(res.data))
         .catch((err) => {
           toast.error("Failed to load bookings");
@@ -27,7 +30,7 @@ const MyBookings = () => {
     try {
       await axios
         .patch(
-          `http://localhost:3000/bookings/${id}`,
+          `https://journey-bay-server.vercel.app/bookings/${id}`,
           {
             status: "completed",
           },

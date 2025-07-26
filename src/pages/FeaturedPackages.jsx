@@ -21,7 +21,7 @@ const FeaturedPackages = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/packages")
+      .get("https://journey-bay-server.vercel.app/packages")
       .then((res) => {
         const featured = res.data.slice(0, 6);
         setPackages(featured);

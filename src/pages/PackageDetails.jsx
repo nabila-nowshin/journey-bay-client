@@ -61,7 +61,7 @@ const PackageDetails = () => {
 
     try {
       axios
-        .post("http://localhost:3000/bookings", bookingInfo, {
+        .post("https://journey-bay-server.vercel.app/bookings", bookingInfo, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access-token")}`,
           },

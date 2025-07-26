@@ -24,7 +24,9 @@ const AllPackages = () => {
   //Fetch packages on searchTerm change
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/packages?search=${searchTerm}`)
+      .get(
+        `https://journey-bay-server.vercel.app/packages?search=${searchTerm}`
+      )
       .then((res) => setPackages(res.data))
       .catch((err) => console.error(err));
   }, [searchTerm]);
@@ -79,7 +81,7 @@ const AllPackages = () => {
           {packages.map((item) => (
             <div
               key={item._id}
-              className="border border-base-300 shadow-lg rounded-2xl overflow-hidden transition-transform transform hover:scale-[1.025]"
+              className="border border-base-300 shadow-lg rounded-2xl overflow-hidden transition-transform transform hover:scale-[1.025] backdrop-blur-xs"
             >
               <img
                 src={item.image}

@@ -5,7 +5,7 @@
 // const AddPackage = () => {
 
 // try {
-//   const res = await fetch("http://localhost:3000/packages", {
+//   const res = await fetch("https://journey-bay-server.vercel.app/packages", {
 //     method: "POST",
 //     headers: { "Content-Type": "application/json" },
 //     body: JSON.stringify(newPackage),
@@ -53,7 +53,7 @@ const AddPackage = () => {
     };
 
     axios
-      .post("http://localhost:3000/packages", newPackage, {
+      .post("https://journey-bay-server.vercel.app/packages", newPackage, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access-token")}`,
         },

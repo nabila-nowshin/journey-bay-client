@@ -14,11 +14,14 @@ const ManagePackages = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/my-packages?email=${user.email}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-          },
-        })
+        .get(
+          `https://journey-bay-server.vercel.app/my-packages?email=${user.email}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+            },
+          }
+        )
         .then((res) => setMyPackages(res.data));
     }
   }, [user]);
@@ -33,7 +36,7 @@ const ManagePackages = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/packages/${id}`, {
+          .delete(`https://journey-bay-server.vercel.app/packages/${id}`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("access-token")}`,
             },

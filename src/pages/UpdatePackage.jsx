@@ -10,9 +10,11 @@ const UpdatePackage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/packages/${id}`).then((res) => {
-      setTour(res.data);
-    });
+    axios
+      .get(`https://journey-bay-server.vercel.app/packages/${id}`)
+      .then((res) => {
+        setTour(res.data);
+      });
   }, [id]);
 
   const handleUpdate = async (e) => {
@@ -28,7 +30,7 @@ const UpdatePackage = () => {
     };
 
     axios
-      .patch(`http://localhost:3000/packages/${id}`, updated, {
+      .patch(`https://journey-bay-server.vercel.app/packages/${id}`, updated, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access-token")}`,
         },
