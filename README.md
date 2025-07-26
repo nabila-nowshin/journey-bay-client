@@ -3,21 +3,21 @@
 JourneyBay is a full-stack tour package booking web app built with the MERN stack. It allows users to explore, book, and manage tour packages with real-time interaction and authentication.
 
 🔗 **Live Site**: [journeybay-7e99c.web.app](https://journeybay-7e99c.web.app)  
-🖥️ **Backend API**: [https://journey-bay-server.vercel.app/](https://journey-bay-server.vercel.app/)
+🖥️ **Backend API**: [journey-bay-server.vercel.app](https://journey-bay-server.vercel.app)
 
 ---
 
 ## 🚀 Features
 
-- 🔓 Firebase Authentication (Email/Password & Google)
+- 🔐 Firebase Authentication (Email/Password & Google)
 - 🧳 Explore, Book, Add & Manage Tour Packages
-- 🔁 Full CRUD Operations
-- 🧾 Bookings with Live Status & Confirmation
-- 🌐 Protected Routes with JWT & Firebase Admin
-- 🌘 Light/Dark Theme Toggle
-- 🔍 Search by Package Name (Regex)
-- 🎨 Responsive UI (Mobile, Tablet, Desktop)
-- 🍭 Toast Notifications, Sweet Alerts, Animations
+- 🗂️ Full CRUD Functionality
+- 📩 Booking Requests with Status Tracking
+- 🔒 Protected Routes (JWT & Firebase Admin)
+- 🌓 Light/Dark Theme Toggle
+- 🔍 Search by Package Name (Regex-based)
+- 📱 Fully Responsive Design
+- 🍭 Toast Notifications, Sweet Alerts, Lottie Animations
 
 ---
 
@@ -32,8 +32,8 @@ JourneyBay is a full-stack tour package booking web app built with the MERN stac
 ## 👤 Developer
 
 **Nabila Nowshin**  
-📧 Email: nabilanowshin327@gmail.com  
-🐙 GitHub: [https://github.com/nabila-nowshin](https://github.com/nabila-nowshin)
+📧 nabilanowshin327@gmail.com  
+🐙 [github.com/nabila-nowshin](https://github.com/nabila-nowshin)
 
 ---
 
