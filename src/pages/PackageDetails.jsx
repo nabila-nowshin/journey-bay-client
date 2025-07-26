@@ -10,7 +10,11 @@ const PackageDetails = () => {
   const packageData = useLoaderData();
   const [init, setInit] = useState(false);
   const { user } = use(AuthContext);
+  const [localBookingCount, setLocalBookingCount] = useState(
+    packageData.bookingCount || 0
+  );
 
+  //   console.log(user.accessToken);
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
@@ -56,14 +60,21 @@ const PackageDetails = () => {
     };
 
     try {
-      axios.post("http://localhost:3000/bookings", bookingInfo).then((res) => {
-        if (res.data.insertedId || res.data.acknowledged) {
-          toast.success("Booking confirmed!");
-          document.getElementById("my_modal_5").close();
-        } else {
-          toast.error("Booking failed. Please try again.");
-        }
-      });
+      axios
+        .post("http://localhost:3000/bookings", bookingInfo, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+          },
+        })
+        .then((res) => {
+          if (res.data.insertedId || res.data.acknowledged) {
+            toast.success("Booking confirmed!");
+            setLocalBookingCount((prev) => prev + 1);
+            document.getElementById("my_modal_5").close();
+          } else {
+            toast.error("Booking failed. Please try again.");
+          }
+        });
     } catch (error) {
       toast.error("Something went wrong!");
     }
@@ -152,7 +163,7 @@ const PackageDetails = () => {
 
           {/* Booking Count */}
           <p className="mb-4 font-medium">
-            Bookings so far: {bookingCount || 0}
+            Bookings so far: {localBookingCount || 0}
           </p>
 
           {/* Departure Location + Date */}

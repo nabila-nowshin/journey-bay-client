@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import bgVideo from "../assets/hero.mp4";
 
 const HeroBanner = () => {

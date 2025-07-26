@@ -12,6 +12,7 @@ import ManagePackages from "../pages/ManagePackages";
 import NotFound from "../pages/NotFound";
 import PrivateRoute from "../provider/PrivateRoute";
 import PackageDetails from "../pages/PackageDetails";
+import UpdatePackage from "../pages/UpdatePackage";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyBookings></MyBookings>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-package/:id",
+        element: (
+          <PrivateRoute>
+            <UpdatePackage></UpdatePackage>
           </PrivateRoute>
         ),
       },

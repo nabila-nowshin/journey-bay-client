@@ -1,5 +1,5 @@
 import { use } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthContext";
 import Swal from "sweetalert2";
 import { auth } from "../firebase/firebase.config";

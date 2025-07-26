@@ -46,8 +46,13 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser); // Automatically updates user state
-      setLoading(false); //stop loading after auth state known
+      if (currentUser?.email) {
+        localStorage.setItem("access-token", currentUser.accessToken);
+      } else {
+        localStorage.removeItem("access-token");
+      }
+      setUser(currentUser);
+      setLoading(false);
     });
     return () => unsubscribe(); // Cleanup
   }, []);
@@ -76,6 +81,13 @@ const AuthProvider = ({ children }) => {
     user,
     setUser,
   };
+
+  // if (user?.accessToken) {
+  //   localStorage.setItem("access-token", user.accessToken);
+  // } else {
+  //   localStorage.removeItem("access-token");
+  // }
+  // console.log(user.accessToken);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

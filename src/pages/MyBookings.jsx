@@ -10,7 +10,11 @@ const MyBookings = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/bookings?email=${user.email}`)
+        .get(`http://localhost:3000/bookings?email=${user.email}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+          },
+        })
         .then((res) => setBookings(res.data))
         .catch((err) => {
           toast.error("Failed to load bookings");
@@ -22,9 +26,17 @@ const MyBookings = () => {
   const handleConfirm = async (id) => {
     try {
       await axios
-        .patch(`http://localhost:3000/bookings/${id}`, {
-          status: "completed",
-        })
+        .patch(
+          `http://localhost:3000/bookings/${id}`,
+          {
+            status: "completed",
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+            },
+          }
+        )
         .then((res) => {
           if (res.data.modifiedCount > 0) {
             toast.success("Booking confirmed!");

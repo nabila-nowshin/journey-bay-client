@@ -31,7 +31,7 @@ const FeaturedPackages = () => {
       });
   }, []);
 
-  if (loading) return <loader></loader>;
+  if (loading) return <Loader></Loader>;
 
   return (
     <div className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
