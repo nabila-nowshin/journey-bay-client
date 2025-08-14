@@ -14,6 +14,7 @@ import PrivateRoute from "../provider/PrivateRoute";
 import PackageDetails from "../pages/PackageDetails";
 import UpdatePackage from "../pages/UpdatePackage";
 import FAQPage from "../pages/FAQPage";
+import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
       {
         path: "/FAQ",
         Component: FAQPage,
+      },
+      {
+        path: "/privacy",
+        Component: PrivacyPolicyPage,
       },
       {
         path: "/forgetPassword",
