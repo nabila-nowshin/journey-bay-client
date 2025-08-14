@@ -35,7 +35,7 @@ const Navbar = () => {
 
         {/* desktop */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="px-1 flex items-center space-x-10 text-lg text-gray-900">
+          <ul className="px-1 flex items-center space-x-10 text-md text-gray-900">
             <li>
               <NavLink to={"/"} className={navLinkClasses}>
                 Home
@@ -56,6 +56,16 @@ const Navbar = () => {
             <li>
               <NavLink to={"/about"} className={navLinkClasses}>
                 About Us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={"/FAQ"} className={navLinkClasses}>
+                FAQ
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={"/privacy"} className={navLinkClasses}>
+                Privacy Policies
               </NavLink>
             </li>
           </ul>
@@ -106,6 +116,16 @@ const Navbar = () => {
                   About Us
                 </NavLink>
               </li>
+              <li>
+                <NavLink to={"/FAQ"} className={navLinkClasses}>
+                  FAQ
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/privacy"} className={navLinkClasses}>
+                  Privacy Policies
+                </NavLink>
+              </li>
             </ul>
           </div>
 
@@ -139,10 +159,6 @@ const Navbar = () => {
                   className="w-10 h-10 rounded-full border-2 border-primary cursor-pointer"
                 />
               </div>
-              {/* <ul
-                tabIndex={0}
-                className="dropdown-content menu bg-base-200/40 backdrop-blur-md rounded-box p-2 shadow-sm  z-50"
-              > */}
               <ul
                 tabIndex={0}
                 className="menu dropdown-content bg-base-200/40 backdrop-blur-md rounded-box  p-2 shadow z-50"
