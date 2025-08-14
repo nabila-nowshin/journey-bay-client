@@ -2,10 +2,10 @@ import Lottie from "lottie-react";
 import contactUs from "../assets/Contact Us.json";
 const ContactSection = () => {
   return (
-    <section className="py-16 px-4 bg-[#DFE7FF] bg-opacity-20 backdrop-blur-md">
+    <section className="py-16 px-4 bg-base-200 bg-opacity-20 backdrop-blur-md">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-6">Contact Us</h2>
-        <p className="text-gray-700 mb-12">
+        <p className="text-base-content mb-12">
           Have questions or want a custom trip? Fill out the form below and
           we’ll get back to you shortly!
         </p>
@@ -15,33 +15,33 @@ const ContactSection = () => {
             action="mailto:support@journeybay.com"
             method="POST"
             encType="text/plain"
-            className="grid gap-4 bg-white p-8 rounded-2xl shadow-lg"
+            className="grid gap-4 bg-base-100 p-8 rounded-2xl shadow-lg"
           >
             <input
               type="text"
               name="name"
               placeholder="Your Name"
               required
-              className="input input-bordered w-full rounded-xl p-4 bg-gray-100 border-gray-300 focus:bg-white focus:border-blue-400"
+              className="input input-bordered w-full rounded-xl p-4 bg-base-100 border-base-200 border-2  focus:border-blue-400"
             />
             <input
               type="email"
               name="email"
               placeholder="Your Email"
               required
-              className="input input-bordered w-full rounded-xl p-4 bg-gray-100 border-gray-300 focus:bg-white focus:border-blue-400"
+              className="input input-bordered w-full rounded-xl p-4  bg-base-100 border-base-200 border-2  focus:border-blue-400"
             />
             <input
               type="text"
               name="subject"
               placeholder="Subject"
-              className="input input-bordered w-full rounded-xl p-4 bg-gray-100 border-gray-300 focus:bg-white focus:border-blue-400"
+              className="input input-bordered w-full rounded-xl p-4  bg-base-100 border-base-200 border-2  focus:border-blue-400"
             />
             <textarea
               name="message"
               placeholder="Your Message"
               required
-              className="textarea textarea-bordered w-full rounded-xl p-4 h-32 resize-none bg-gray-100 border-gray-300 focus:bg-white focus:border-blue-400"
+              className="textarea textarea-bordered w-full rounded-xl p-4 h-32 resize-none  bg-base-100 border-base-200 border-2  focus:border-blue-400"
             ></textarea>
             <button
               type="submit"

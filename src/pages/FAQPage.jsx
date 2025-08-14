@@ -43,7 +43,7 @@ const FAQPage = () => {
   ];
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-r from-sky-100 to-blue-300 bg-opacity-20 backdrop-blur-md">
+    <section className="py-16 px-4 bg-base-200">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-12">
           Frequently Asked Questions
