@@ -13,6 +13,7 @@ import NotFound from "../pages/NotFound";
 import PrivateRoute from "../provider/PrivateRoute";
 import PackageDetails from "../pages/PackageDetails";
 import UpdatePackage from "../pages/UpdatePackage";
+import FAQPage from "../pages/FAQPage";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         Component: About,
+      },
+      {
+        path: "/FAQ",
+        Component: FAQPage,
       },
       {
         path: "/forgetPassword",

@@ -30,10 +30,10 @@ const AllPackages = () => {
         `https://journey-bay-server.vercel.app/packages?search=${searchTerm}`
       )
       .then((res) => {
-        setLocalLoading(false);
         setPackages(res.data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLocalLoading(false));
   }, [searchTerm]);
 
   if (loading || localLoading) return <Loader></Loader>;
