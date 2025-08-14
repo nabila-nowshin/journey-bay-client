@@ -2,7 +2,7 @@ import React from "react";
 
 const Testimonials = () => {
   return (
-    <section className="py-12 bg-base-100">
+    <section className="py-12 ">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-bold mb-8">JourneyBay by the Numbers</h2>
         <div

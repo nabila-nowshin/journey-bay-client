@@ -68,7 +68,7 @@ const AllPackages = () => {
       )}
 
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-8">
+        <h1 className="text-3xl font-bold text-center mb-8">
           Explore All Tour Packages
         </h1>
 
@@ -82,7 +82,7 @@ const AllPackages = () => {
           />
         </div>
 
-        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {packages.map((item) => (
             <div
               key={item._id}
@@ -95,7 +95,7 @@ const AllPackages = () => {
               />
 
               <div className="p-5 text-left space-y-3 text-base-content">
-                <h3 className="text-xl font-bold">{item.tour_name}</h3>
+                <h3 className="text-lg font-bold">{item.tour_name}</h3>
 
                 <div className="flex items-center gap-3">
                   <img
@@ -108,7 +108,7 @@ const AllPackages = () => {
 
                 <p className="text-sm">🕒 {item.duration}</p>
                 <p className="text-sm">🗓️ {item.departure_date}</p>
-                <p className="text-lg font-bold text-primary">৳ {item.price}</p>
+                <p className="text-md font-bold text-primary">৳ {item.price}</p>
 
                 <Link
                   to={`/packages/${item._id}`}

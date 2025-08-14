@@ -2,13 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Loader from "../components/Loader";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
+  const [localLoading, setLocalLoading] = useState(false);
 
   useEffect(() => {
     if (user?.email) {
+      setLocalLoading(true);
       axios
         .get(
           `https://journey-bay-server.vercel.app/bookings?email=${user.email}`,
@@ -21,10 +24,13 @@ const MyBookings = () => {
         .then((res) => setBookings(res.data))
         .catch((err) => {
           toast.error("Failed to load bookings");
-          console.error(err);
-        });
+          //console.error(err);
+        })
+        .finally(() => setLocalLoading(false));
     }
   }, [user]);
+
+  if (localLoading) return <Loader></Loader>;
 
   const handleConfirm = async (id) => {
     try {
