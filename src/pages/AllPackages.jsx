@@ -11,6 +11,7 @@ const AllPackages = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { loading } = use(AuthContext);
   const [init, setInit] = useState(false);
+  const [localLoading, setLocalLoading] = useState(false);
 
   //animation
   useEffect(() => {
@@ -23,15 +24,19 @@ const AllPackages = () => {
 
   //Fetch packages on searchTerm change
   useEffect(() => {
+    setLocalLoading(true);
     axios
       .get(
         `https://journey-bay-server.vercel.app/packages?search=${searchTerm}`
       )
-      .then((res) => setPackages(res.data))
+      .then((res) => {
+        setLocalLoading(false);
+        setPackages(res.data);
+      })
       .catch((err) => console.error(err));
   }, [searchTerm]);
 
-  if (loading) return <Loader></Loader>;
+  if (loading || localLoading) return <Loader></Loader>;
 
   return (
     <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">

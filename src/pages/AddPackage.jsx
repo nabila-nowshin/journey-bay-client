@@ -1,29 +1,3 @@
-// import { useContext, useState } from "react";
-// import { AuthContext } from "../provider/AuthProvider";
-// import toast from "react-hot-toast";
-
-// const AddPackage = () => {
-
-// try {
-//   const res = await fetch("https://journey-bay-server.vercel.app/packages", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(newPackage),
-//   });
-
-//   const data = await res.json();
-//   if (data.insertedId) {
-//     toast.success("Tour package added!");
-//     form.reset();
-//   } else {
-//     toast.error("Failed to add package.");
-//   }
-// } catch (err) {
-//   toast.error("Server error.");
-// } finally {
-//   setLoading(false);
-// }
-
 import React, { use, useState } from "react";
 import { AuthContext } from "../provider/AuthContext";
 import axios from "axios";
